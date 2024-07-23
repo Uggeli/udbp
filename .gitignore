@@ -1,0 +1,10 @@
+/env
+/ven
+/include
+/lib
+/Scripts
+/.vscode
+pyenv.cfg
+/sqlitedbs
+/udbp/models
+__pycache__
