@@ -9,7 +9,7 @@ from udbp.plugins.dbhandler_plugin import DatabaseHandler
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
-app = Flask('udbp', instance_path='/media/uggeli/Kingston/Projectit/udbp/sqlitedbs')
+app = Flask('udbp')
 app.config['DEBUG'] = True
 
 active_databases = {}
