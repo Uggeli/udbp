@@ -72,7 +72,7 @@ Flask server that provides RESTful API endpoints for interacting with the databa
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/udbp.git
+   git clone https://github.com/Uggeli/udbp.git
    cd udbp
    ```
 
