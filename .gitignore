@@ -6,5 +6,4 @@
 /.vscode
 pyenv.cfg
 /sqlitedbs
-/udbp/models
 __pycache__
