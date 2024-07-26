@@ -1,11 +1,12 @@
+import os
+
 from flask import Flask, request, jsonify
 import logging
 from udbp.DatabaseManager import DatabaseManager
 
-
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
-app = Flask('udbp')
+app = Flask('udbp', root_path=os.path.dirname(os.path.abspath(__file__)))
 app.config['DEBUG'] = True
 
 config = {
