@@ -78,7 +78,7 @@ class DatabaseManager:
     async def retrieve_data(self, db_name: str, db_type: str, model_name: str, filters: Dict[str, Any] = None):
         return await self.execute_operation(db_name, db_type, 'retrieve_data', model_name=model_name, filters=filters)
 
-    def shutdown(self):
+    async def shutdown(self):
         self.executor.shutdown(wait=True)
         for handler in self.handlers.values():
             handler.close()
