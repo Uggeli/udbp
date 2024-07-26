@@ -20,7 +20,7 @@ class TestDatabaseManager(unittest.IsolatedAsyncioTestCase):
         self.assertIsNotNone(handler)
         self.assertEqual(handler.db_name, db_name)
 
-    @patch('udbp.Handlers.SQLiteHandler.SQLiteHandler')
+    @patch('udbp.DatabaseManager.SQLiteHandler')
     async def test_execute_operation(self, mock_handler_class):
         mock_handler = MagicMock()
         mock_handler_class.return_value = mock_handler
