@@ -12,16 +12,18 @@ class SQLiteModel:
     def create_table(cls) -> str:
         fields = []
         for name, field_type in cls.__fields__.items():
-            if field_type == 'Integer':
+            if name == 'id' and field_type == 'Integer':
+                fields.append(f"{name} INTEGER PRIMARY KEY AUTOINCREMENT")
+            elif field_type == 'Integer':
                 fields.append(f"{name} INTEGER")
             elif field_type == 'Float':
                 fields.append(f"{name} REAL")
             elif field_type == 'String':
                 fields.append(f"{name} TEXT")
             elif field_type == 'Boolean':
-                fields.append(f"{name} INTEGER")  # SQLite doesn't have a boolean type
+                fields.append(f"{name} INTEGER")
             else:
-                fields.append(f"{name} TEXT")  # Default to TEXT for unknown types
+                fields.append(f"{name} TEXT")
         
         fields_str = ', '.join(fields)
         return f"CREATE TABLE IF NOT EXISTS {cls.__tablename__} ({fields_str})"
@@ -34,10 +36,10 @@ class SQLiteModel:
         return cls(**data)
 
     def get_insert_sql(self) -> Tuple[str, Tuple]:
-        fields = ', '.join(self.__fields__.keys())
-        placeholders = ', '.join(['?' for _ in self.__fields__])
-        sql = f"INSERT INTO {self.__tablename__} ({fields}) VALUES ({placeholders})"
-        values = tuple(getattr(self, field) for field in self.__fields__)
+        fields = [field for field in self.__fields__ if field != 'id']
+        placeholders = ', '.join(['?' for _ in fields])
+        sql = f"INSERT INTO {self.__tablename__} ({', '.join(fields)}) VALUES ({placeholders})"
+        values = tuple(getattr(self, field) for field in fields)
         return sql, values
 
     @classmethod
